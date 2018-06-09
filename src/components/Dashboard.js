@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Dashboard = () => (
-  <div class='wrapper'>
+  <div className='wrapper'>
     <h1>Welcome to React App</h1>
   </div>
 )
