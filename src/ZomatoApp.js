@@ -3,47 +3,56 @@ import Titles from './components/ZomatoApi/Titles'
 import Form from './components/ZomatoApi/ZomatoForm'
 import Restraunt from './components/ZomatoApi/Restraunt'
 
-// const API_KEY = 'f5b5bcf6f320233b29eb28025c3b08a7'
-// https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyBuvXtK0JEou0-GPuEZWEG9Bp1_0ldxwvg
+const API_KEY = '227639c762cafc3173b93a5052288de5'
 
 class ZomatoApp extends React.Component {
   state = {
-    temperature: undefined,
-    city: undefined,
-    country: undefined,
-    humidity: undefined,
-    description: undefined,
+    restrauntName: undefined,
     error: undefined
   }
   getRestraunt = async (e) => {
     e.preventDefault()
     const city = e.target.elements.city.value
     const country = e.target.elements.country.value
-    const api_call = await fetch(`https://developers.zomato.com/api/v2.1/cities?q=${city}`,{
-      headers:{'user-key': '227639c762cafc3173b93a5052288de5'}
-    })
-    console.log('cALL MADE')
-    const data = await api_call.json()
+
+    const weather_call = await fetch(`https://developers.zomato.com/api/v2.1/cities?q=${city}`,
+    {headers:{'user-key': API_KEY}})
+    const weatherData = await weather_call.json()
+console.log(weatherData)
+
+if(weatherData.status === 'success' && weatherData['location_suggestions'].length > 0){
+     const cityID = weatherData['location_suggestions'][0].id
+
+    const googleApi_call = await fetch(`https://developers.zomato.com/api/v2.1/establishments?city_id=${cityID}`,
+    {headers:{'user-key': API_KEY}})
+    const restrauntData = await googleApi_call.json()
+  
     if (city && country) {
-      console.log(data)
+      if(weatherData.status === 'success')
+      {
+        console.log(restrauntData.establishments[0].establishment.name)
       this.setState({
-        cityName: data['location_suggestions'][0].name
-        // city: data.name,
-        // country: data.sys.country,
-        // humidity: data.main.humidity,
-        // description: data.weather[0].description,
-        // error: ""
+        restrauntName: restrauntData.establishments[0].establishment.name,
+        error:''
       })
+    } else{
+      this.setState({
+        restrauntName: undefined,
+        error: "No Restraunt found"
+      })
+    }
     } else {
       this.setState({
-        temperature: undefined,
-        city: undefined,
-        country: undefined,
-        humidity: undefined,
-        description: undefined,
+        restrauntName: undefined,
         error: "Please Enter The values"
       })
     }
+  } else{
+    this.setState({
+      restrauntName: undefined,
+      error: "City Not Available"
+    })
+  }
   }
   render() {
     return <div >
@@ -57,12 +66,8 @@ class ZomatoApp extends React.Component {
               <div className="col-xs-7 form-container">
               <Form getRestraunt={this.getRestraunt} />
               <Restraunt
-              cityName={this.state.cityName}
-                // city={this.state.city}
-                // country={this.state.country}
-                // humidity={this.state.humidity}
-                // description={this.state.description}
-                // error={this.state.error}
+              restrauntName={this.state.restrauntName}
+                error={this.state.error}
               />
               </div>
             </div>
@@ -70,6 +75,7 @@ class ZomatoApp extends React.Component {
         </div>
       </div>
     </div>
+  
   }
 }
 

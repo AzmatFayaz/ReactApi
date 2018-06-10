@@ -15,6 +15,26 @@ body {
   margin-top: -20px;
 }
 
+.dashboard{
+  background: url("img/dashboard.jpg") center center no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+}
+
+.not-found{
+  background: url("img/notfound.png") center center no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+}
+
 .main {
   height: 90vh;
   background: #fff;
@@ -25,7 +45,7 @@ body {
 
 .title-container {
   height: 90vh;
-  background: url("img/bg.jpg") center center no-repeat;
+  background: url("img/weather.jpg") center center no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;

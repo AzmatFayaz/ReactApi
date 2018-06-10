@@ -1,6 +1,6 @@
 
-# React App
-   React APP that provides you weather information and restraunts around you by entering the City Name.<br/> 
+# Location Info
+   Location Info  that provides you weather information and restraunts around you by entering the City and Country Name.<br/> 
 
 
 **Setup**

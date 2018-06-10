@@ -9,6 +9,7 @@ import Header from './components/Header'
 import Zomato from './ZomatoApp'
 import registerServiceWorker from './registerServiceWorker'
 import Dashboard from './components/Dashboard'
+import NotFoundPage from './components/NotFoundPage'
 
 const routes = (
   <BrowserRouter >
@@ -17,7 +18,8 @@ const routes = (
       <Switch>
         <Route path='/' component={Dashboard} exact />
         <Route path='/weather' component={Weather} />
-        <Route path='/zomato' component={Zomato} />
+        <Route path='/restraunt' component={Zomato} />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   </BrowserRouter>

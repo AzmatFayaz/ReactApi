@@ -1,13 +1,18 @@
 import React from 'react'
 
-const Weather = props => (
+const Restraunt = props => (
   <div className='weather__info'>
     {
-      props.cityName && <p className='weather__key'>City:
-      <span className='weather__value'> {props.cityName}</span>
+      props.restrauntName && <p className='weather__key'>Restraunt:
+      <span className='weather__value'> {props.restrauntName}</span>
+      </p>
+    }
+    {
+      props.error && <p className='weather__error'>Condition:
+      <span> {props.error}</span>
       </p>
     }
   </div>
 )
 
-export default Weather
+export default Restraunt
