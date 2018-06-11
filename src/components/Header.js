@@ -7,7 +7,7 @@ const Header = () => (
       <ul className='nav navbar-nav'>
         <li><NavLink to='/' activeClassName='is-active' exact>Dashboard</NavLink></li>
         <li> <NavLink to='/weather' activeClassName='is-active'>Weather</NavLink></li>
-        <li><NavLink to='/restraunt' activeClassName='is-active'>Restraunt</NavLink></li>
+        <li><NavLink to='/restauraunt' activeClassName='is-active'>Restauraunt</NavLink></li>
       </ul>
     </div>
   </nav>
