@@ -18,7 +18,7 @@ const routes = (
       <Switch>
         <Route path='/' component={Dashboard} exact />
         <Route path='/weather' component={Weather} />
-        <Route path='/restauraunt' component={Zomato} />
+        <Route path='/restaurant' component={Zomato} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
