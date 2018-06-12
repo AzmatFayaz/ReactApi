@@ -30,9 +30,13 @@ if(weatherData.status === 'success' && weatherData['location_suggestions'].lengt
     if (city && country) {
       if(weatherData.status === 'success')
       {
-        console.log(restrauntData.establishments[0].establishment.name)
+        const arr =[]
+        for (let i=0;i<3;i++){
+          arr.push({'name': restrauntData.establishments[i].establishment.name})
+        }
+   
       this.setState({
-        restrauntName: restrauntData.establishments[0].establishment.name,
+        restrauntName: {arr},
         error:''
       })
     } else{
@@ -67,7 +71,7 @@ if(weatherData.status === 'success' && weatherData['location_suggestions'].lengt
               <Form getRestraunt={this.getRestraunt} />
               <Restraunt
               restrauntName={this.state.restrauntName}
-                error={this.state.error}
+              error={this.state.error}
               />
               </div>
             </div>
